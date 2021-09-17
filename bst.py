@@ -30,4 +30,19 @@ class BST:
                 node.left = new_node 
             else: 
                 self.insert_node_rec(node.left, new_node)
+        return
+
+    def insert_node_iter(self, node, new_node):
+        while node:
+            if node.element < new_node.element:
+                if not node.right:
+                    node.right = new_node
+                    return
+                node = node.right 
+            if not node.left:
+                node.left = new_node
+                return
+            else:
+                node = node.left
         return 
+          
