@@ -52,4 +52,16 @@ class BST:
         
         if rec:
             return self.search_node_rec(self.root, target)
-        return self.search_node_iter(self.root, target) 
+        return self.search_node_iter(self.root, target)
+
+    @staticmethod
+    def search_node_iter(node, target):
+        while node and node.element != target:
+            if node.element < target:
+                node = node.right 
+            else:
+                node = node.left 
+        if not node:
+            return False 
+        return True 
+        
