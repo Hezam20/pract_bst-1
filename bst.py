@@ -49,7 +49,6 @@ class BST:
     def is_found(self, target, rec=False):
         if not self.root:
             return "The tree is empty"
-        
         if rec:
             return self.search_node_rec(self.root, target)
         return self.search_node_iter(self.root, target) 
@@ -62,3 +61,14 @@ class BST:
         if node.element < target:
             return self.search_node_rec(node.right, target)
         return self.search_node_rec(node.left, target)
+
+    @staticmethod
+    def search_node_iter(node, target):
+        while node and node.element != target:
+            if node.element < target:
+                node = node.right 
+            else:
+                node = node.left 
+        if not node:
+            return False 
+        return True 
