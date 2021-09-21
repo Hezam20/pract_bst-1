@@ -81,5 +81,38 @@ class BST:
             self.delete_node_rec(self.root, target)
         else:
             self.delete_node_iter(self.root, target)
-        return 
+        return
 
+    def successor(self, node):
+        if node.right.left:
+            node.element = node.right.element
+            node.right = node.right.right 
+            return 
+        tmp = node.right 
+        while tmp.left.left:
+            tmp = tmp.left 
+        node.element = tmp.left.element
+        tmp.left = tmp.left.right 
+        return
+
+
+    def delete_node_rec(self, node, target):
+        if not node:
+            return False 
+        
+        if node.element == target:
+            if not node.left and not node.right:
+                return None 
+            if not node.left or not node.right:
+                if node.left:
+                    return node.left 
+                return node.right
+            return self.successor(node)
+
+        parent = node 
+        if node.element < target:
+            parent.right = self.delete_node_rec(node.right, target)
+        else:
+            parent.left = self.delete_node_rec(node.left, target)
+        return parent 
+        
