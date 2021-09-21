@@ -71,4 +71,15 @@ class BST:
                 node = node.left 
         if not node:
             return False 
-        return True 
+        return True
+
+    def delete_node(self, target, rec=False):
+        if not self.root:
+            return "Tree is empty"
+        
+        if rec:
+            self.delete_node_rec(self.root, target)
+        else:
+            self.delete_node_iter(self.root, target)
+        return 
+
